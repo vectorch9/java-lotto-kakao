@@ -19,7 +19,7 @@ public class Lotto {
         }
     }
 
-    public LottoNumbers getNumbers() {
-        return numbers;
+    public int countMatch(LottoNumbers otherNumbers) {
+        return numbers.countMatch(otherNumbers);
     }
 }

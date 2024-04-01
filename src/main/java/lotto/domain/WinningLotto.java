@@ -29,12 +29,16 @@ public class WinningLotto {
     }
 
     private void validateUnique(LottoNumbers lottoNumbers, LottoNumbers bonus) {
-        if (lottoNumbers.matchCount(bonus) != 0) {
+        if (lottoNumbers.countMatch(bonus) != 0) {
             throw new IllegalArgumentException("당첨로또의 보너스 숫자는 6개 숫자와 겹치면 안됩니다");
         }
     }
 
-    public int matchCount(LottoNumbers lottoNumbers) {
-        return lottoNumbers.matchCount(lottoNumbers);
+    public Prize match(Lotto lotto) {
+        int matchCount = lotto.countMatch(lottoNumbers);
+        if (matchCount == 6) {
+            return Prize.FIRST;
+        }
+        return Prize.NONE;
     }
 }

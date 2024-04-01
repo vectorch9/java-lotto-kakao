@@ -44,11 +44,11 @@ public class LottoNumbers {
         return numbers.size();
     }
 
-    public int matchCount(LottoNumbers lottoNumbers) {
-        return lottoNumbers.matchCount(numbers);
+    public int countMatch(LottoNumbers lottoNumbers) {
+        return lottoNumbers.countMatch(numbers);
     }
 
-    private int matchCount(Set<Integer> lottoNumbers) {
+    private int countMatch(Set<Integer> lottoNumbers) {
         Set<Integer> unionSet = new HashSet<>(lottoNumbers);
         unionSet.retainAll(numbers);
         return unionSet.size();

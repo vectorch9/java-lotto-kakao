@@ -26,4 +26,22 @@ public class WinningLottoTest {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 6))
             .isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    void 숫자를_6개_맞추면_1등이다() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        WinningLotto winning = new WinningLotto(List.of(1,2,3,4,5,6), 7);
+        Prize prize = winning.match(lotto);
+
+        assertThat(prize).isEqualTo(Prize.FIRST);
+    }
+
+    @Test
+    void 숫자를_5개_맞추고_보너스_숫자를_맞추면_2등이다() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
+        WinningLotto winning = new WinningLotto(List.of(1,2,3,4,5,6), 7);
+        Prize prize = winning.match(lotto);
+
+        assertThat(prize).isEqualTo(Prize.SECOND);
+    }
 }

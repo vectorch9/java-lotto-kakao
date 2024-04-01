@@ -14,14 +14,6 @@ public enum Prize {
         this.reward = reward;
     }
 
-    public static Prize match(WinningLotto winning, Lotto lotto) {
-        int count = winning.matchCount(lotto.getNumbers());
-        if (count == 6) {
-            return FIRST;
-        }
-        return NONE;
-    }
-
     public int getReward() {
         return this.reward;
     }
