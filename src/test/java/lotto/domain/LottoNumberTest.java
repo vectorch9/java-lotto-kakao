@@ -15,9 +15,9 @@ public class LottoNumberTest {
     @Test
     void 로또_숫자는_1이상_45이하가_아니면_예외를_던진다() {
         assertAll(
-            () -> assertThatThrownBy(() -> new LottoNumber(List.of(0,2,3,4,5,6)))
+            () -> assertThatThrownBy(() -> new LottoNumber(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(RuntimeException.class),
-            () -> assertThatThrownBy(() -> new LottoNumber(List.of(46,2,3,4,5,6)))
+            () -> assertThatThrownBy(() -> new LottoNumber(List.of(46, 2, 3, 4, 5, 6)))
                 .isInstanceOf(RuntimeException.class)
         );
     }
