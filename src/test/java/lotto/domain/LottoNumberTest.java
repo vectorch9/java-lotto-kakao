@@ -30,4 +30,14 @@ public class LottoNumberTest {
         assertThatThrownBy(() -> new LottoNumber(numbers))
             .isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    void 로또_숫자는_중복_숫자가_있으면_예외를_던진다() {
+        assertAll(
+            () -> assertThatThrownBy(() -> new LottoNumber(List.of(2, 2, 3, 4, 5, 6)))
+                .isInstanceOf(RuntimeException.class),
+            () -> assertThatThrownBy(() -> new LottoNumber(List.of(6, 2, 3, 4, 5, 6)))
+                .isInstanceOf(RuntimeException.class)
+        );
+    }
 }
