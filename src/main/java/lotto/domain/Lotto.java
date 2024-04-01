@@ -22,4 +22,8 @@ public class Lotto {
     public int countMatch(LottoNumbers otherNumbers) {
         return numbers.countMatch(otherNumbers);
     }
+
+    public boolean containsAll(LottoNumbers otherNumbers) {
+        return numbers.containsAll(otherNumbers);
+    }
 }

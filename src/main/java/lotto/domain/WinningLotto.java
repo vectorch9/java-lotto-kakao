@@ -36,9 +36,7 @@ public class WinningLotto {
 
     public Prize match(Lotto lotto) {
         int matchCount = lotto.countMatch(lottoNumbers);
-        if (matchCount == 6) {
-            return Prize.FIRST;
-        }
-        return Prize.NONE;
+        boolean isBonusMatched = lotto.containsAll(bonusNumber);
+        return Prize.of(matchCount, isBonusMatched);
     }
 }

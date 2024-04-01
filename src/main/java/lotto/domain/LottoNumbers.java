@@ -53,4 +53,8 @@ public class LottoNumbers {
         unionSet.retainAll(numbers);
         return unionSet.size();
     }
+
+    public boolean containsAll(LottoNumbers lottoNumbers) {
+        return this.numbers.containsAll(lottoNumbers.numbers);
+    }
 }
