@@ -7,15 +7,16 @@ public class LottoNumber {
 
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
-    public static final int LOTTO_NUMBERS_SIZE = 6;
+
+    private final List<Integer> numbers;
 
     public LottoNumber(List<Integer> numbers) {
         validate(numbers);
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         validateNumbersRange(numbers);
-        validateNumbersSize(numbers);
         validateNumbersUnique(numbers);
     }
 
@@ -28,12 +29,6 @@ public class LottoNumber {
     private void validateNumberRange(Integer number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("로또 숫자는 1에서 45 사이여야 합니다");
-        }
-    }
-
-    private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException("로또 숫자는 6개여야 합니다");
         }
     }
 
