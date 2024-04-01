@@ -47,8 +47,8 @@ public class LottoNumbersTest {
 
     @Test
     void 모든_숫자를_포함하면_true를_반환한다() {
-        LottoNumbers numbers = new LottoNumbers(List.of(1,2,3,4,5,6));
-        LottoNumbers numbers2 = new LottoNumbers(List.of(1,2,3,4,5));
+        LottoNumbers numbers = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumbers numbers2 = new LottoNumbers(List.of(1, 2, 3, 4, 5));
 
         boolean containsAll = numbers.containsAll(numbers2);
 
@@ -57,8 +57,8 @@ public class LottoNumbersTest {
 
     @Test
     void 모든_숫자를_포함하면_false를_반환한다() {
-        LottoNumbers numbers = new LottoNumbers(List.of(1,2,3,4,5,6));
-        LottoNumbers numbers2 = new LottoNumbers(List.of(1,2,3,4,7));
+        LottoNumbers numbers = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumbers numbers2 = new LottoNumbers(List.of(1, 2, 3, 4, 7));
 
         boolean containsAll = numbers.containsAll(numbers2);
 

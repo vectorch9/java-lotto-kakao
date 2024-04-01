@@ -19,7 +19,7 @@ public enum Prize {
     }
 
     public static Prize of(int matchCount, boolean bonusMatched) {
-        for (Prize prize: Prize.values()) {
+        for (Prize prize : Prize.values()) {
             if (matchCount >= prize.matchCount && ((bonusMatched == prize.bonusMatched) || !prize.bonusMatched)) {
                 return prize;
             }

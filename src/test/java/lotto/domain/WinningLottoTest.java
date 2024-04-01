@@ -28,8 +28,8 @@ public class WinningLottoTest {
 
     @Test
     void 숫자를_6개_맞추면_1등이다() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        WinningLotto winning = new WinningLotto(List.of(1,2,3,4,5,6), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winning = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
         Prize prize = winning.match(lotto);
 
         assertThat(prize).isEqualTo(Prize.FIRST);
@@ -37,8 +37,8 @@ public class WinningLottoTest {
 
     @Test
     void 숫자를_5개_맞추고_보너스_숫자를_맞추면_2등이다() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,7));
-        WinningLotto winning = new WinningLotto(List.of(1,2,3,4,5,6), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        WinningLotto winning = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
         Prize prize = winning.match(lotto);
 
         assertThat(prize).isEqualTo(Prize.SECOND);
@@ -46,8 +46,8 @@ public class WinningLottoTest {
 
     @Test
     void 숫자를_5개_맞추고_보너스_숫자를_틀리면_3등이다() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,8));
-        WinningLotto winning = new WinningLotto(List.of(1,2,3,4,5,6), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        WinningLotto winning = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
         Prize prize = winning.match(lotto);
 
         assertThat(prize).isEqualTo(Prize.THIRD);
@@ -55,8 +55,8 @@ public class WinningLottoTest {
 
     @Test
     void 숫자를_4개를_맞추면_4등이다() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,8,9));
-        WinningLotto winning = new WinningLotto(List.of(1,2,3,4,5,6), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 8, 9));
+        WinningLotto winning = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
         Prize prize = winning.match(lotto);
 
         assertThat(prize).isEqualTo(Prize.FOURTH);
@@ -64,8 +64,8 @@ public class WinningLottoTest {
 
     @Test
     void 숫자를_3개를_맞추면_5등이다() {
-        Lotto lotto = new Lotto(List.of(1,2,3,10,8,9));
-        WinningLotto winning = new WinningLotto(List.of(1,2,3,4,5,6), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 10, 8, 9));
+        WinningLotto winning = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
         Prize prize = winning.match(lotto);
 
         assertThat(prize).isEqualTo(Prize.FIFTH);
@@ -73,8 +73,8 @@ public class WinningLottoTest {
 
     @Test
     void 숫자를_2개_이하_맞추면_꽝이다() {
-        Lotto lotto = new Lotto(List.of(1,2,11,10,8,9));
-        WinningLotto winning = new WinningLotto(List.of(1,2,3,4,5,6), 7);
+        Lotto lotto = new Lotto(List.of(1, 2, 11, 10, 8, 9));
+        WinningLotto winning = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
         Prize prize = winning.match(lotto);
 
         assertThat(prize).isEqualTo(Prize.NONE);

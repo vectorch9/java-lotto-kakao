@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 public class PrizeTest {
 
-
     @Test
     void 숫자_6개를_맞추면_1등이다() {
         assertAll(
@@ -41,6 +40,7 @@ public class PrizeTest {
             () -> assertThat(Prize.of(3, true)).isEqualTo(Prize.FIFTH)
         );
     }
+
     @Test
     void 숫자를_2개_이하로_맞추면_꽝이다() {
         assertAll(
