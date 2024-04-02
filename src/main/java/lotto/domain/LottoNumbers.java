@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class LottoNumbers {
 
@@ -56,5 +57,16 @@ public class LottoNumbers {
 
     public boolean containsAll(LottoNumbers lottoNumbers) {
         return this.numbers.containsAll(lottoNumbers.numbers);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        builder.append(numbers.stream()
+            .map(Object::toString)
+            .collect(Collectors.joining(", ")));
+        builder.append("]");
+        return builder.toString();
     }
 }

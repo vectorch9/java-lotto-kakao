@@ -26,4 +26,9 @@ public class Lotto {
     public boolean containsAll(LottoNumbers otherNumbers) {
         return numbers.containsAll(otherNumbers);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
