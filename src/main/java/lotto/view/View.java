@@ -22,8 +22,14 @@ public class View {
 
     public void printLotto(List<Lotto> lotto) {
         System.out.printf("%d개를 구매했습니다.\n", lotto.size());
-        lotto.forEach(System.out::println);
+        lotto.forEach(this::printLotto);
         System.out.println();
+    }
+
+    private void printLotto(Lotto lotto) {
+        System.out.print("[");
+        System.out.print(lotto);
+        System.out.println("]");
     }
 
     public List<Integer> promptWinningNumbers() {

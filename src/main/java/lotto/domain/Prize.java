@@ -24,12 +24,14 @@ public enum Prize {
     }
 
     public static Prize of(int matchCount, boolean bonusMatched) {
-        for (Prize prize : Prize.values()) {
-            if (matchCount >= prize.matchCount && ((bonusMatched == prize.bonusMatched) || !prize.bonusMatched)) {
-                return prize;
-            }
-        }
-        return Prize.NONE;
+        return Arrays.stream(values())
+            .filter(prize -> filterPrize(prize, matchCount, bonusMatched))
+            .findFirst()
+            .orElse(Prize.NONE);
+    }
+
+    private static boolean filterPrize(Prize prize, int matchCount, boolean bonusMatched) {
+        return matchCount >= prize.matchCount && ((bonusMatched == prize.bonusMatched) || !prize.bonusMatched);
     }
 
     public int getReward() {

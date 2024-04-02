@@ -61,12 +61,8 @@ public class LottoNumbers {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("[");
-        builder.append(numbers.stream()
+        return numbers.stream()
             .map(Object::toString)
-            .collect(Collectors.joining(", ")));
-        builder.append("]");
-        return builder.toString();
+            .collect(Collectors.joining(", "));
     }
 }
