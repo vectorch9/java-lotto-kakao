@@ -30,4 +30,12 @@ public enum Prize {
     public int getReward() {
         return this.reward;
     }
+
+    public boolean isBonusMatched() {
+        return bonusMatched;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
 }
