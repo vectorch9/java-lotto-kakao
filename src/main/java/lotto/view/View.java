@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 
 public class View {
 
@@ -27,13 +28,13 @@ public class View {
 
     public List<Integer> promptWinningNumbers() {
         System.out.println("지난 주 당첨 번호를 입력해주세요.");
-        return Arrays.stream(nextNotEmptyLine().split(","))
+        return Arrays.stream(nextNotBlankLine().split(","))
             .map(String::trim)
             .map(Integer::parseInt)
             .collect(Collectors.toList());
     }
 
-    private String nextNotEmptyLine() {
+    private String nextNotBlankLine() {
         String line = scanner.nextLine();
         while (line.isBlank()) {
             line = scanner.nextLine();
@@ -51,12 +52,12 @@ public class View {
         System.out.println("---------");
     }
 
-    public void printPrizeInfo(int matchCount, boolean bonusMatched, int reward, int prizeCount) {
-        System.out.printf("%d개 일치", matchCount);
-        if (bonusMatched) {
-            System.out.printf(", 보너스 볼 일");
+    public void printPrizeInfo(Prize prize, int prizeCount) {
+        System.out.printf("%d개 일치", prize.getMatchCount());
+        if (prize.isBonusMatched()) {
+            System.out.print(", 보너스 볼 일");
         }
-        System.out.printf(" (%d원) - %d개\n", reward, prizeCount);
+        System.out.printf(" (%d원) - %d개\n", prize.getReward(), prizeCount);
     }
 
     public void printRewardRate(double rate) {

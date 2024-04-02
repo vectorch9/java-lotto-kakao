@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import lotto.domain.Buyer;
@@ -12,27 +11,44 @@ import lotto.view.View;
 
 public class Controller {
     private final View view;
+    private final LottoMachine lottoMachine;
 
     public Controller(View view) {
         this.view = view;
+        this.lottoMachine = new LottoMachine();
     }
 
     public void run() {
-        LottoMachine machine = new LottoMachine();
-        int expense = view.promptExpense();
-        List<Lotto> lotto = machine.issue(expense);
-        view.printLotto(lotto);
+        List<Lotto> lotto = buyLotto();
+        WinningLotto winningLotto = issueWinningLotto();
 
-        List<Integer> numbers = view.promptWinningNumbers();
-        Integer bonus = view.promptBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(numbers, bonus);
         Buyer buyer = new Buyer(lotto, winningLotto);
 
+        printReward(buyer);
+    }
+
+
+    private List<Lotto> buyLotto() {
+        int expense = view.promptExpense();
+        List<Lotto> lotto = lottoMachine.issue(expense);
+        view.printLotto(lotto);
+        return lotto;
+    }
+
+    private WinningLotto issueWinningLotto() {
+        List<Integer> numbers = view.promptWinningNumbers();
+        Integer bonus = view.promptBonusNumber();
+        return new WinningLotto(numbers, bonus);
+    }
+
+    private void printReward(Buyer buyer) {
         view.printPrizeHeader();
-        Arrays.stream(Prize.values()).forEach(prize -> {
-            int prizeCount = buyer.getPrizeCount(prize);
-            view.printPrizeInfo(prize.getMatchCount(), prize.isBonusMatched(), prize.getReward(), prizeCount);
-        });
+        Prize.reversedValuesForReward().forEach(prize -> printPrize(prize, buyer));
         view.printRewardRate(buyer.getRewardRate());
+    }
+
+    private void printPrize(Prize prize, Buyer buyer) {
+        int prizeCount = buyer.getPrizeCount(prize);
+        view.printPrizeInfo(prize, prizeCount);
     }
 }

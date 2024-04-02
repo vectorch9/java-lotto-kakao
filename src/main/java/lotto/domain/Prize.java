@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum Prize {
     FIRST(2000000000, 6, false),
     SECOND(30000000, 5, true),
@@ -37,5 +42,17 @@ public enum Prize {
 
     public int getMatchCount() {
         return matchCount;
+    }
+
+    public static List<Prize> reversedValuesForReward() {
+        List<Prize> prizes = Arrays.asList(Prize.values());
+        Collections.reverse(prizes);
+        return prizes.stream()
+            .filter(Prize::isNotNone)
+            .collect(Collectors.toList());
+    }
+
+    private boolean isNotNone() {
+        return this != NONE;
     }
 }
