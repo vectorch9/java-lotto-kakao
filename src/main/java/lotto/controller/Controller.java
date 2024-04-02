@@ -27,7 +27,6 @@ public class Controller {
         printReward(buyer);
     }
 
-
     private List<Lotto> buyLotto() {
         int expense = view.promptExpense();
         List<Lotto> lotto = lottoMachine.issue(expense);
