@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 
-import lotto.domain.Buyer;
+import lotto.domain.Prizes;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Prize;
@@ -20,11 +20,13 @@ public class Controller {
 
     public void run() {
         List<Lotto> lotto = buyLotto();
+        int lottoCount = lotto.size();
         WinningLotto winningLotto = publishWinningLotto();
 
-        Buyer buyer = new Buyer(lotto, winningLotto);
+        Prizes prizes = new Prizes(lotto, winningLotto);
 
-        printReward(buyer);
+        printReward(prizes);
+        view.printRewardRate(prizes.getRewardRate(LottoMachine.LOTTO_PRICE * lottoCount));
     }
 
     private List<Lotto> buyLotto() {
@@ -40,14 +42,13 @@ public class Controller {
         return new WinningLotto(numbers, bonus);
     }
 
-    private void printReward(Buyer buyer) {
+    private void printReward(Prizes prizes) {
         view.printPrizeHeader();
-        Prize.reversedValuesForReward().forEach(prize -> printPrize(prize, buyer));
-        view.printRewardRate(buyer.getRewardRate());
+        Prize.reversedValuesForReward().forEach(prize -> printPrize(prize, prizes));
     }
 
-    private void printPrize(Prize prize, Buyer buyer) {
-        int prizeCount = buyer.getPrizeCount(prize);
+    private void printPrize(Prize prize, Prizes prizes) {
+        int prizeCount = prizes.count(prize);
         view.printPrizeInfo(prize, prizeCount);
     }
 }

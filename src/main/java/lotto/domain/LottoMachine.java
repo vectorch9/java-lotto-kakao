@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class LottoMachine {
 
-    public static final int LOTTO_PRICE = 1000;
+    public static final long LOTTO_PRICE = 1000;
 
     public List<Lotto> issue(int money) {
         validateMoney(money);

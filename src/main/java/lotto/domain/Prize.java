@@ -13,11 +13,11 @@ public enum Prize {
     FIFTH(5000, 3, false),
     NONE(0, 0, false);
 
-    private final int reward;
+    private final long reward;
     private final int matchCount;
     private final boolean bonusMatched;
 
-    Prize(int reward, int matchCount, boolean bonusMatched) {
+    Prize(long reward, int matchCount, boolean bonusMatched) {
         this.reward = reward;
         this.matchCount = matchCount;
         this.bonusMatched = bonusMatched;
@@ -34,8 +34,12 @@ public enum Prize {
         return matchCount >= prize.matchCount && ((bonusMatched == prize.bonusMatched) || !prize.bonusMatched);
     }
 
-    public int getReward() {
+    public long getReward() {
         return this.reward;
+    }
+
+    public long getReward(int count) {
+        return this.reward * count;
     }
 
     public boolean isBonusMatched() {
