@@ -20,7 +20,7 @@ public class Controller {
 
     public void run() {
         List<Lotto> lotto = buyLotto();
-        WinningLotto winningLotto = issueWinningLotto();
+        WinningLotto winningLotto = publishWinningLotto();
 
         Buyer buyer = new Buyer(lotto, winningLotto);
 
@@ -34,7 +34,7 @@ public class Controller {
         return lotto;
     }
 
-    private WinningLotto issueWinningLotto() {
+    private WinningLotto publishWinningLotto() {
         List<Integer> numbers = view.promptWinningNumbers();
         Integer bonus = view.promptBonusNumber();
         return new WinningLotto(numbers, bonus);
