@@ -1,8 +1,8 @@
 package lotto.random;
 
 import static lotto.domain.Lotto.LOTTO_SIZE;
-import static lotto.domain.LottoNumbers.MAX_LOTTO_NUMBER;
-import static lotto.domain.LottoNumbers.MIN_LOTTO_NUMBER;
+import static lotto.domain.LottoNumber.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoNumber.MIN_LOTTO_NUMBER;
 
 import java.util.Collections;
 import java.util.List;
