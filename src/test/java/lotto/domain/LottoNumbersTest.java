@@ -64,4 +64,24 @@ public class LottoNumbersTest {
 
         assertThat(containsAll).isFalse();
     }
+
+    @Test
+    void 숫자를_포함하고_있으면_true를_반환한다() {
+        LottoNumbers numbers = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber number = new LottoNumber(1);
+
+        boolean contains = numbers.contains(number);
+
+        assertThat(contains).isTrue();
+    }
+
+    @Test
+    void 숫자를_포함하고_있으면_false를_반환한다() {
+        LottoNumbers numbers = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber number = new LottoNumber(7);
+
+        boolean contains = numbers.contains(number);
+
+        assertThat(contains).isFalse();
+    }
 }

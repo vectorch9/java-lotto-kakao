@@ -23,10 +23,6 @@ public class LottoNumbers {
         }
     }
 
-    public int size() {
-        return numbers.size();
-    }
-
     public int countMatch(LottoNumbers lottoNumbers) {
         return lottoNumbers.countMatch(numbers);
     }
@@ -39,6 +35,10 @@ public class LottoNumbers {
 
     public boolean containsAll(LottoNumbers lottoNumbers) {
         return this.numbers.containsAll(lottoNumbers.numbers);
+    }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
     }
 
     @Override

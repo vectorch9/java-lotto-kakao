@@ -43,4 +43,14 @@ public class LottoTest {
 
         assertThat(containsAll).isTrue();
     }
+
+    @Test
+    void 숫자를_포함하는지_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber number = new LottoNumber(1);
+
+        boolean contains = lotto.contains(number);
+
+        assertThat(contains).isTrue();
+    }
 }
