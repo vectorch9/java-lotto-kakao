@@ -6,11 +6,9 @@ import java.util.Map;
 
 public class Prizes {
 
-    private final int lottoCount;
     private final Map<Prize, Integer> prizes;
 
     public Prizes(List<Lotto> lotto, WinningLotto winning) {
-        this.lottoCount = lotto.size();
         this.prizes = calculatePrizes(lotto, winning);
     }
 

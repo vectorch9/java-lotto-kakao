@@ -2,10 +2,10 @@ package lotto.controller;
 
 import java.util.List;
 
-import lotto.domain.Prizes;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.Prize;
+import lotto.domain.Prizes;
 import lotto.domain.WinningLotto;
 import lotto.view.View;
 
@@ -13,9 +13,9 @@ public class Controller {
     private final View view;
     private final LottoMachine lottoMachine;
 
-    public Controller(View view) {
+    public Controller(View view, LottoMachine lottoMachine) {
         this.view = view;
-        this.lottoMachine = new LottoMachine();
+        this.lottoMachine = lottoMachine;
     }
 
     public void run() {
