@@ -21,7 +21,11 @@ public class InputView {
 
     public int promptManualCount() {
         System.out.println("수동으로 구매할 로또 수를 입력해 주세요.");
-        return scanner.nextInt();
+        int result = scanner.nextInt();
+        if (result < 0) {
+            throw new IllegalArgumentException("0 또는 양수를 입력해야 합니다.");
+        }
+        return result;
     }
 
     public List<List<Integer>> promptManualNumbers(int count) {
