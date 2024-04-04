@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
@@ -33,9 +34,17 @@ public class Controller {
     }
 
     private List<Lotto> buyLotto() {
-        int expense = inputView.promptExpense();
-        List<Lotto> lotto = lottoMachine.issue(expense);
-        outputView.printLotto(lotto);
+        long expense = inputView.promptExpense();
+
+        int manualCount = inputView.promptManualCount();
+        List<List<Integer>> manualNumbers = inputView.promptManualNumbers(manualCount);
+        List<Lotto> lotto = manualNumbers.stream()
+                                         .map(Lotto::new)
+                                         .collect(Collectors.toList());
+        expense -= LottoMachine.LOTTO_PRICE * manualCount;
+
+        lotto.addAll(lottoMachine.issue(expense));
+        outputView.printLotto(lotto, manualCount);
         return lotto;
     }
 

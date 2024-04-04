@@ -8,7 +8,7 @@ public abstract class LottoMachine {
 
     public static final long LOTTO_PRICE = 1000;
 
-    public List<Lotto> issue(int money) {
+    public List<Lotto> issue(long money) {
         validateMoney(money);
 
         return Stream.generate(this::issue)
@@ -16,7 +16,7 @@ public abstract class LottoMachine {
                      .collect(Collectors.toList());
     }
 
-    private void validateMoney(int money) {
+    private void validateMoney(long money) {
         if (money < LOTTO_PRICE) {
             throw new IllegalArgumentException("로또를 한장도 구매할 수 없습니다");
         }
