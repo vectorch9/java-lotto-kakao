@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.domain.LottoMachine.LOTTO_PRICE;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,22 +32,30 @@ public class Controller {
         Prizes prizes = new Prizes(lotto, winningLotto);
 
         printReward(prizes);
-        outputView.printRewardRate(prizes.getRewardRate(LottoMachine.LOTTO_PRICE * lottoCount));
+        outputView.printRewardRate(prizes.getRewardRate(LOTTO_PRICE * lottoCount));
     }
 
     private List<Lotto> buyLotto() {
         long expense = inputView.promptExpense();
-
         int manualCount = inputView.promptManualCount();
-        List<List<Integer>> manualNumbers = inputView.promptManualNumbers(manualCount);
-        List<Lotto> lotto = manualNumbers.stream()
-                                         .map(Lotto::new)
-                                         .collect(Collectors.toList());
-        expense -= LottoMachine.LOTTO_PRICE * manualCount;
+
+        if (LOTTO_PRICE * manualCount > expense) {
+            throw new IllegalArgumentException("구입 금액보다 많은 로또를 구매할 수 없습니다.");
+        }
+
+        List<Lotto> lotto = buyManualLotto(manualCount);
+        expense -= LOTTO_PRICE * manualCount;
 
         lotto.addAll(lottoMachine.issue(expense));
         outputView.printLotto(lotto, manualCount);
         return lotto;
+    }
+
+    private List<Lotto> buyManualLotto(int manualCount) {
+        List<List<Integer>> manualNumbers = inputView.promptManualNumbers(manualCount);
+        return manualNumbers.stream()
+                            .map(Lotto::new)
+                            .collect(Collectors.toList());
     }
 
     private WinningLotto publishWinningLotto() {

@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -29,6 +30,10 @@ public class InputView {
     }
 
     public List<List<Integer>> promptManualNumbers(int count) {
+        if (count == 0) {
+            return Collections.emptyList();
+        }
+
         System.out.println("수동으로 구매할 번호를 입력해 주세요.");
         List<List<Integer>> result = new ArrayList<>();
         for (int i = 0; i < count; i++) {
