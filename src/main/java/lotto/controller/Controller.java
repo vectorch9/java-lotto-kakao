@@ -25,20 +25,22 @@ public class Controller {
     }
 
     public void run() {
-        List<Lotto> lotto = buyLotto();
+        long expense = inputView.promptExpense();
+        int manualCount = inputView.promptManualCount();
+
+        List<Lotto> lotto = buyLotto(expense, manualCount);
+        outputView.printLotto(lotto, manualCount);
+
         int lottoCount = lotto.size();
         WinningLotto winningLotto = publishWinningLotto();
 
         Prizes prizes = new Prizes(lotto, winningLotto);
 
-        printReward(prizes);
+        printPrizes(prizes);
         outputView.printRewardRate(prizes.getRewardRate(LOTTO_PRICE * lottoCount));
     }
 
-    private List<Lotto> buyLotto() {
-        long expense = inputView.promptExpense();
-        int manualCount = inputView.promptManualCount();
-
+    private List<Lotto> buyLotto(long expense, int manualCount) {
         if (LOTTO_PRICE * manualCount > expense) {
             throw new IllegalArgumentException("구입 금액보다 많은 로또를 구매할 수 없습니다.");
         }
@@ -47,7 +49,6 @@ public class Controller {
         expense -= LOTTO_PRICE * manualCount;
 
         lotto.addAll(lottoMachine.issue(expense));
-        outputView.printLotto(lotto, manualCount);
         return lotto;
     }
 
@@ -64,7 +65,7 @@ public class Controller {
         return new WinningLotto(numbers, bonus);
     }
 
-    private void printReward(Prizes prizes) {
+    private void printPrizes(Prizes prizes) {
         outputView.printPrizeHeader();
         Prize.reversedValuesForReward().forEach(prize -> printPrize(prize, prizes));
     }
