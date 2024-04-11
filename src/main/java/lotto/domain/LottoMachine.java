@@ -4,9 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public abstract class LottoMachine {
+public class LottoMachine {
 
     public static final long LOTTO_PRICE = 1000;
+    private final LottoNumberGenerator generator;
+
+    public LottoMachine(LottoNumberGenerator generator) {
+        this.generator = generator;
+    }
 
     public List<Lotto> issue(long money) {
         validateMoney(money);
@@ -22,5 +27,7 @@ public abstract class LottoMachine {
         }
     }
 
-    abstract protected Lotto issue();
+    private Lotto issue() {
+        return new Lotto(generator.generate());
+    }
 }
